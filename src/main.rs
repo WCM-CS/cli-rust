@@ -1,35 +1,78 @@
 
-// Define the structs for storing the food, food name & FDC ID
-// Define struct for user macros, proteins, fats, carbs
+mod data{
+    //Struct to store the food data
+    struct FoodData {
+        name: String,
+        fdc_id: u32,
+        category: String
+    }
 
+    impl FoodData {
+        // Constructor 
+        pub fn new(name: String, fdc_id: u32, category: String) -> Self {
+            FoodData {name, fdc_id, category}
+        }
+    }
 
-// Query user for macro values
+    // Struct to store user inputs
+    pub struct UserMacros {
+        protein: f32,
+        carbs: f32, 
+        fats: f32
+    }
 
-// Store values in struct
+    impl UserMacros {
+        // Constructor
+        pub fn new(protein: f32, carbs: f32, fats: f32) -> Self {
+            UserMacros {protein, carbs, fats}
+        }
 
-// Unkown section -- Either we use conditions to determine which protein sources to load or choose at random then potentially have to select the other optioon which would require additional calls to the proxy,
-// To avoid additonal calls potentially set a fat limit such that if fat macro is under x we know we must choose low fat protein option 
-
-// Define the implimentation files to load the values into the structs per each type of food 
-// Load data into each struct by category, so 4 impl functions for loading, then return as a vector of structs 
-// Loading the food options into structs occurs after decision logic due to the fact that if we load all data into structs then only use 3/4 and leave one out its a memory usage error
-
-// Based on the foods selected via random number generaton related to length of the vector store the index of the structs from their vector in another, clean up previous vectors for memory reasons
-
-// NOTE: potential error if we chose wrong food options since going back at this point would require loading all values again aka starting over
-
-// Once foods are selected interact with the proxy sending the data through to gather the nutrient valies of the given foods we selected
-
-
-// Manipulate the food amunts so the macros scale to the users input
-
-
-// Return the foods selected and their associated amounts 
-
-
-
-
+        // Getters
+        pub fn get_protein(&self) -> f32 {
+            self.protein
+        }
+        pub fn get_carbs(&self) -> f32 {
+            self.carbs
+        }
+        pub fn get_fats(&self) -> f32 {
+            self.fats
+        }
+    }
+}
 
 fn main() {
-    println!("Hello, World!");
+    // Define user macros
+    let mut protein = String::new();
+    let mut carbs = String::new();
+    let mut fats = String::new();
+
+    // Get user macros  
+    println!("Enter in your desired macro nutrient values!"); 
+    println!("Protein (g): ");
+    std::io::stdin().read_line(&mut protein);
+    println!("Carbs (g): ");
+    std::io::stdin().read_line(&mut carbs);
+    println!("Fats (g): "); 
+    std::io::stdin().read_line(&mut fats);
+
+    // Parse user macros
+    let protein: f32 = protein.trim().parse().unwrap();
+    let carbs: f32 = carbs.trim().parse().unwrap();
+    let fats: f32 = fats.trim().parse().unwrap();
+
+    // Create user macros struct
+    let user_macros = data::UserMacros::new(protein, carbs, fats);
+
+    // Print user macros
+    println!("Your macros are: ");
+    println!("Protein: {}", user_macros.get_protein());
+    println!("Carbs: {}", user_macros.get_carbs());
+    println!("Fats: {}", user_macros.get_fats());
+
+
+
+    // If fat to protein ratio is greater than 2.5 to 23
+    // so 2.5/23 = 0.1087
+
+
 }
