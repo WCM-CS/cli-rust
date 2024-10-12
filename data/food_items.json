@@ -1,0 +1,114 @@
+[
+    {
+      "name": "Chicken breast",
+      "category": "Protein No Fats",
+      "protein": 22.5,
+      "carbs": 0.0,
+      "fats": 1.93
+    },
+    {
+      "name": "Ground turkey 99% lean",
+      "category": "Protein No Fats",
+      "protein": 25.0,
+      "carbs": 0.0,
+      "fats": 0.89
+    },
+    {
+      "name": "Whey Protein",
+      "category": "Protein No Fats",
+      "protein": 78.1,
+      "carbs": 6.25,
+      "fats": 1.56
+    },
+    {
+      "name": "Eye of round",
+      "category": "Protein No Fats",
+      "protein": 23.4,
+      "carbs": 0.0,
+      "fats": 2.48
+    },
+    {
+      "name": "Egg Whites",
+      "category": "Protein No Fats",
+      "protein": 10.7,
+      "carbs": 0.0,
+      "fats": 0.08
+    },
+    {
+      "name": "Ground beef 95% lean",
+      "category": "Protein With Fats",
+      "protein": 21.4,
+      "carbs": 0.0,
+      "fats": 5.0
+    },
+    {
+      "name": "Large Whole Egg",
+      "category": "Protein With Fats",
+      "protein": 12.4,
+      "carbs": 0.0,
+      "fats": 9.96
+    },
+    {
+      "name": "Flank steak",
+      "category": "Protein With Fats",
+      "protein": 20.1,
+      "carbs": 0.0,
+      "fats": 9.4
+    },
+    {
+      "name": "Jasmine Rice",
+      "category": "Carbs",
+      "protein": 6.94,
+      "carbs": 79.8,
+      "fats": 1.3
+    },
+    {
+      "name": "Rolled Oats",
+      "category": "Carbs",
+      "protein": 13.5,
+      "carbs": 68.7,
+      "fats": 5.89
+    },
+    {
+      "name": "Golden Potatoes",
+      "category": "Carbs",
+      "protein": 1.81,
+      "carbs": 16.0,
+      "fats": 0.26
+    },
+    {
+      "name": "Ramen",
+      "category": "Carbs",
+      "protein": 9.38,
+      "carbs": 57.8,
+      "fats": 10.9
+    },
+    {
+      "name": "Olive Oil",
+      "category": "Fats",
+      "protein": 0.0,
+      "carbs": 0.0,
+      "fats": 15.4
+    },
+    {
+      "name": "MCT Oil",
+      "category": "Fats",
+      "protein": 0.0,
+      "carbs": 0.0,
+      "fats": 14.0
+    },
+    {
+      "name": "Butter",
+      "category": "Fats",
+      "protein": 0.0,
+      "carbs": 0.0,
+      "fats": 82.2
+    },
+    {
+      "name": "Almond Butter",
+      "category": "Fats",
+      "protein": 20.3,
+      "carbs": 21.2,
+      "fats": 53.0
+    }
+  ]
