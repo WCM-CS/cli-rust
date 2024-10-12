@@ -1,78 +1,60 @@
-
-mod data{
-    //Struct to store the food data
-    struct FoodData {
-        name: String,
-        fdc_id: u32,
-        category: String
-    }
-
-    impl FoodData {
-        // Constructor 
-        pub fn new(name: String, fdc_id: u32, category: String) -> Self {
-            FoodData {name, fdc_id, category}
-        }
-    }
-
-    // Struct to store user inputs
-    pub struct UserMacros {
-        protein: f32,
-        carbs: f32, 
-        fats: f32
-    }
-
-    impl UserMacros {
-        // Constructor
-        pub fn new(protein: f32, carbs: f32, fats: f32) -> Self {
-            UserMacros {protein, carbs, fats}
-        }
-
-        // Getters
-        pub fn get_protein(&self) -> f32 {
-            self.protein
-        }
-        pub fn get_carbs(&self) -> f32 {
-            self.carbs
-        }
-        pub fn get_fats(&self) -> f32 {
-            self.fats
-        }
-    }
-}
+use std::io::Write;
+mod food_data;
+use self::food_data as FD;
 
 fn main() {
-    // Define user macros
-    let mut protein = String::new();
-    let mut carbs = String::new();
-    let mut fats = String::new();
+    // Define input variables
+   let mut protein = String::new();
+   let mut carbs = String::new();
+   let mut fats = String::new();
 
     // Get user macros  
     println!("Enter in your desired macro nutrient values!"); 
-    println!("Protein (g): ");
-    std::io::stdin().read_line(&mut protein);
-    println!("Carbs (g): ");
-    std::io::stdin().read_line(&mut carbs);
-    println!("Fats (g): "); 
-    std::io::stdin().read_line(&mut fats);
+    print!("Protein (g): ");
+    std::io::stdout().flush().unwrap();
+    let _ = std::io::stdin().read_line(&mut protein).expect("Failed to read line");
+    
+    print!("Carbs (g): ");
+    std::io::stdout().flush().unwrap();
+    let _ = std::io::stdin().read_line(&mut carbs).expect("Failed to read line");
+    
+    print!("Fats (g): "); 
+    std::io::stdout().flush().unwrap();
+    let _ = std::io::stdin().read_line(&mut fats).expect("Failed to read line");
 
-    // Parse user macros
-    let protein: f32 = protein.trim().parse().unwrap();
-    let carbs: f32 = carbs.trim().parse().unwrap();
-    let fats: f32 = fats.trim().parse().unwrap();
+    // Parse user macros, overwrites string variables with floats 
+    let protein: f32 = protein.trim().parse().expect("Invalid protein value");
+    let carbs: f32 = carbs.trim().parse().expect("Invalid carbs value");
+    let fats: f32 = fats.trim().parse().expect("Invalid fats value");
 
     // Create user macros struct
-    let user_macros = data::UserMacros::new(protein, carbs, fats);
-
-    // Print user macros
-    println!("Your macros are: ");
-    println!("Protein: {}", user_macros.get_protein());
-    println!("Carbs: {}", user_macros.get_carbs());
-    println!("Fats: {}", user_macros.get_fats());
-
+    let user_macros = FD::UserMacros::new(protein, carbs, fats);
 
 
     // If fat to protein ratio is greater than 2.5 to 23
-    // so 2.5/23 = 0.1087
+    // those are the macros for the fattiest low fat protein option
+    // so 2.48/23.4 = 0.10598
+    let ratio: f32 = user_macros.get_fats() / user_macros.get_protein();
+    let data_path = "data/food_data.json";
 
+    // Parse the json file data into vectors based on category of food
+    //Function fiters protein options based on fat to protein ratio
+    if ratio < 0.10598 {
+        load_food_data(data_path, false) {
+    } else {
+        load_food_data(data_path, true)
+        }
+    };
 
+    let (proteins, carbs, fats) = match result {
+        Ok(data) => data,
+        Err(err) => {
+            println!("Error: {}", err);
+            return;
+        }
+    };
+
+    let protein_vec = proteins;
+    let carb_vec = carbs;
+    let fat_vec = fats;
 }
