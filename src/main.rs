@@ -1,6 +1,7 @@
 use std::io::Write;
 mod food_data;
 use self::food_data as FD;
+use std::fs;
 
 fn main() {
     // Define input variables
@@ -35,26 +36,41 @@ fn main() {
     // those are the macros for the fattiest low fat protein option
     // so 2.48/23.4 = 0.10598
     let ratio: f32 = user_macros.get_fats() / user_macros.get_protein();
-    let data_path = "data/food_data.json";
+    let data_path = "data/food_items.json";
+    let json_data = fs::read_to_string(data_path).expect("Failed to read file");
 
     // Parse the json file data into vectors based on category of food
     //Function fiters protein options based on fat to protein ratio
-    if ratio < 0.10598 {
-        load_food_data(data_path, false) {
-    } else {
-        load_food_data(data_path, true)
-        }
-    };
 
-    let (proteins, carbs, fats) = match result {
+    let (proteins_vec, carbs_vec, fats_vec) = match if ratio < 0.10598 {
+        FD::load_food_data(&json_data, false) 
+    } else {
+        FD::load_food_data(&json_data, true)
+    } {
         Ok(data) => data,
         Err(err) => {
-            println!("Error: {}", err);
+            println!("Error Parsing json: {}", err);
             return;
         }
     };
 
-    let protein_vec = proteins;
-    let carb_vec = carbs;
-    let fat_vec = fats;
+
+    println!("Proteins:");
+    for _protein in proteins_vec {
+        println!("{:?}", _protein);
+    }
+
+    println!("Carbs:");
+    for _carb in carbs_vec {
+        println!("{:?}", _carb);
+    }
+
+    println!("Fats:");
+    for _fat in fats_vec {
+        println!("{:?}", _fat);
+    }
+
+    // Print out the vectors content 
+
+    // Manipulate the food amunts so the macros scale to the users input
 }

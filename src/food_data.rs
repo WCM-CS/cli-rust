@@ -1,7 +1,8 @@
-use std::fs; // Reading files
-use serde::Deserialize; // Deserializing JSON files
+use serde::{Deserialize, Serialize};
+use serde_json;
 
 //Struct to store the food data
+#[derive(Debug, Deserialize, Serialize)]
 pub struct FoodData {
     name: String,
     category: String,
@@ -46,8 +47,8 @@ impl UserMacros {
 pub fn load_food_data(json_data: &str, include_all_protein: bool) -> Result<(Vec<FoodData>, Vec<FoodData>, Vec<FoodData>), serde_json::Error> {
     // Parse json data into FoodData struct and store in a vector
     // Uses ? to return an error if the json data cannot be parsed 
-    /// This is best for limited error handling, where error is either of the same type or only occurs once
-    let foods: Vec<FoodData> = serde_json::from_str(json_data)?;
+    // This is best for limited error handling, where error is either of the same type or only occurs once
+    let mut foods: Vec<FoodData> = serde_json::from_str(json_data)?;
 
     // Define vectors to hold the data per each macro
     let mut proteins: Vec<FoodData> = Vec::new();
