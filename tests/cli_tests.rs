@@ -1,8 +1,7 @@
 use std::fs;
-mod foood_data;
-use self::food_data as FD;
+use cli_rust::food_data as FD;
 
-#[cfgtest]
+#[cfg(test)]
 
 #[test]
 fn test_json_loading() {
