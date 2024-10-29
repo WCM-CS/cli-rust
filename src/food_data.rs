@@ -1,3 +1,4 @@
+use std::io::Write;
 use serde::{Deserialize, Serialize};
 use serde_json;
 
@@ -15,6 +16,27 @@ impl FoodData {
     // Constructor 
     pub fn new(name: String,category: String, protein: f32, carbs: f32, fats: f32) -> Self {
         FoodData {name, category, protein, carbs, fats}
+    }
+
+    // Getters
+    pub fn get_name(&self) -> &str {
+        &self.name
+    }
+
+    pub fn get_category(&self) -> &str {
+        &self.category
+    }
+
+    pub fn get_protein(&self) -> f32 {
+        self.protein
+    }
+
+    pub fn get_carbs(&self) -> f32 {
+        self.carbs
+    }
+
+    pub fn get_fats(&self) -> f32 {
+        self.fats
     }
 }
 
@@ -42,6 +64,47 @@ impl UserMacros {
     pub fn get_fats(&self) -> f32 {
         self.fats
     }
+
+    // Setters
+    pub fn set_protein(&mut self, protein: f32) {
+        self.protein = protein;
+    }
+    pub fn set_carbs(&mut self, carbs: f32) {
+        self.carbs = carbs;
+    }
+    pub fn set_fats(&mut self, fats: f32) {
+        self.fats = fats;
+    }
+}
+
+// Get the users macros, return them in a struct UserMacros
+pub fn get_input_macros() -> UserMacros{
+    // Define input variables
+    let mut protein = String::new();
+    let mut carbs = String::new();
+    let mut fats = String::new();
+
+    // Get user macros
+    println!("Enter in your desired macro nutrient values!"); 
+    print!("Protein (g): ");
+    std::io::stdout().flush().unwrap();
+    let _ = std::io::stdin().read_line(&mut protein).expect("Failed to read line");
+    
+    print!("Carbs (g): ");
+    std::io::stdout().flush().unwrap();
+    let _ = std::io::stdin().read_line(&mut carbs).expect("Failed to read line");
+    
+    print!("Fats (g): "); 
+    std::io::stdout().flush().unwrap();
+    let _ = std::io::stdin().read_line(&mut fats).expect("Failed to read line");
+
+    // Parse user macros, overwrites string variables with floats 
+    let protein: f32 = protein.trim().parse().expect("Invalid protein value");
+    let carbs: f32 = carbs.trim().parse().expect("Invalid carbs value");
+    let fats: f32 = fats.trim().parse().expect("Invalid fats value");
+
+    let user_macros = UserMacros::new(protein, carbs, fats);
+    user_macros
 }
 
 pub fn load_food_data(json_data: &str, include_all_protein: bool) -> Result<(Vec<FoodData>, Vec<FoodData>, Vec<FoodData>), serde_json::Error> {
