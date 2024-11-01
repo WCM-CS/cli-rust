@@ -11,7 +11,7 @@ fn test_json_loading_all() {
 
     assert_eq!(proteins_vec.len(), 8);
     assert_eq!(carbs_vec.len(), 4);
-    assert_eq!(fats_vec.len(), 4);
+    assert_eq!(fats_vec.len(), 3);
 }
 
 #[test]
@@ -22,5 +22,5 @@ fn test_json_loading_protein_filtered() {
 
     assert_eq!(proteins_vec.len(), 5);
     assert_eq!(carbs_vec.len(), 4);
-    assert_eq!(fats_vec.len(), 4);
+    assert_eq!(fats_vec.len(), 3);
 }

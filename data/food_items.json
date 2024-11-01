@@ -103,12 +103,5 @@
       "protein": 0.0,
       "carbs": 0.0,
       "fats": 82.2
-    },
-    {
-      "name": "Almond Butter",
-      "category": "Fats",
-      "protein": 20.3,
-      "carbs": 21.2,
-      "fats": 53.0
     }
   ]
